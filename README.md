@@ -31,3 +31,4 @@ Abrí `http://localhost:5173`.
 
 La acción `getUserProfile` pega a `jsonplaceholder.typicode.com` y usa JSONata `"name"` para extraer el nombre.
 "# Wizards-JSON" 
+"# Wizards-JSON" 
