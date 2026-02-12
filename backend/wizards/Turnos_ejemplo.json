@@ -1,0 +1,67 @@
+{
+  "name": "Turnos_ejemplo",
+  "description": "",
+  "initialStep": "step1",
+  "steps": [
+    {
+      "name": "step1",
+      "title": "Paso 1",
+      "components": [
+        {
+          "order": 1,
+          "name": "component_1770921382639",
+          "componentType": "TEXT",
+          "component": {
+            "value": "Ingrese Nombre"
+          }
+        },
+        {
+          "order": 2,
+          "name": "name",
+          "componentType": "FIELD",
+          "component": {
+            "type": "TEXT"
+          }
+        },
+        {
+          "order": 3,
+          "name": "component_1770921349",
+          "componentType": "TEXT",
+          "component": {
+            "value": "Ingrese Apellido"
+          }
+        },
+        {
+          "order": 4,
+          "name": "apellido",
+          "componentType": "FIELD",
+          "component": {
+            "type": "TEXT"
+          }
+        },
+        {
+          "order": 50,
+          "name": "component_1770921782339",
+          "componentType": "BUTTON",
+          "component": {
+            "label": "siguiente"
+          }
+        }
+      ]
+    },
+    {
+      "name": "step2",
+      "title": "Paso 2",
+      "components": [
+        {
+          "order": 1,
+          "name": "component_1770921807839",
+          "componentType": "TEXT",
+          "component": {
+            "value": "hola {name}"
+          }
+        }
+      ]
+    }
+  ]
+}

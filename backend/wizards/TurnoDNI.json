@@ -1,0 +1,504 @@
+{
+  "name": "TurnoDNI",
+  "description": "Wizard para gestionar turnos DNI (versión simplificada)",
+  "initialStep": "first",
+  "steps": [
+    {
+      "name": "first",
+      "title": "Paso 1. Datos del paciente",
+      "className": "grid grid-cols-1 gap-4",
+      "components": [
+        {
+          "order": 1,
+          "name": "dni",
+          "componentType": "FIELD",
+          "component": {
+            "type": "NUMBER",
+            "placeholder": "Ingrese el DNI"
+          },
+          "events": {
+            
+          },
+          "top": {
+            "components": [
+              {
+                "order": 1,
+                "name": "dniLabel",
+                "componentType": "LABEL",
+                "component": {
+                  "value": "DNI"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "order": 2,
+          "name": "name",
+          "componentType": "FIELD",
+          "component": {
+            "type": "TEXT",
+            "placeholder": "Nombre del paciente"
+          },
+          "top": {
+            "components": [
+              {
+                "order": 1,
+                "name": "nameLabel",
+                "componentType": "LABEL",
+                "component": {
+                  "value": "Nombre"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "order": 3,
+          "name": "genre",
+          "componentType": "FIELD",
+          "component": {
+            "type": "SELECT",
+            "placeholder": "Seleccione el sexo",
+            "options": ["Masculino", "Femenino"]  
+          },
+          "events": {
+            "ON_MOUNTED": [
+              {
+                "order": 1,
+                "conditions": true,
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "UPDATE_COMPONENT",
+                        "order": 1,
+                        "targetName": "genre",
+                        "targetProp": "options",
+                        "context": {
+                          "key": "options",
+                          "type": "VALUE",
+                          "value": [
+                            {
+                              "value": "female",
+                              "label": "Femenino"
+                            },
+                            {
+                              "value": "male",
+                              "label": "Masculino"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "top": {
+            "components": [
+              {
+                "order": 1,
+          "name": "genreLabel", "componentType": "LABEL", "component": { "value": "Sexo" } } ] } }, { "order": 100, "name": "next", "componentType": "BUTTON",
+          "component": {
+            "label": "Siguiente"
+          },
+          "events": {
+            "ON_CLICK": [
+              {
+                "order": 1,
+                "conditions": true,
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "UPDATE_COMPONENT",
+                        "order": 1,
+                        "targetName": "next",
+                        "targetProp": "loading",
+                        "context": {
+                          "key": "loading",
+                          "type": "VALUE",
+                          "value": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "order": 2,
+                "conditions": {
+                  "isEmpty": {
+                    "path": "dni"
+                  }
+                },
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "ADD_ERROR",
+                        "order": 1,
+                        "fieldName": "dni",
+                        "errorMessage": "El DNI es requerido"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "order": 3,
+                "conditions": {
+                  "not": {
+                    "matchesRegex": {
+                      "path": "dni",
+                      "value": "^[0-9]{1,2}$"
+                    }
+                  }
+                },
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "ADD_ERROR",
+                        "order": 1,
+                        "fieldName": "dni",
+                        "errorMessage": "El DNI no es válido (debe ser 1-10)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "order": 4,
+                "conditions": {
+                  "isEmpty": {
+                    "path": "name"
+                  }
+                },
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "ADD_ERROR",
+                        "order": 1,
+                        "fieldName": "name",
+                        "errorMessage": "El nombre es requerido"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "order": 5,
+                "conditions": {
+                  "and": [
+                    {
+                      "not": {
+                        "isEmpty": {
+                          "path": "dni"
+                        }
+                      }
+                    },
+                    {
+                      "matchesRegex": {
+                        "path": "dni",
+                        "value": "^[0-9]{1,2}$"
+                      }
+                    },
+                    {
+                      "not": {
+                        "isEmpty": {
+                          "path": "name"
+                        }
+                      }
+                    },
+                    {
+                      "remote": {
+                        "name": "mortyAnda",
+                        "context": [
+                          {
+                            "key": "dni",
+                            "type": "CURRENT_STEP_VALUES",
+                            "fieldName": "dni"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "SAVE_STEP_VALUES",
+                        "order": 1
+                      },
+                      {
+                        "type": "GO_TO_STEP",
+                        "order": 2,
+                        "stepName": "secondA"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "order": 6,
+                "conditions": {
+                  "and": [
+                    {
+                      "not": {
+                        "isEmpty": {
+                          "path": "dni"
+                        }
+                      }
+                    },
+                    {
+                      "matchesRegex": {
+                        "path": "dni",
+                        "value": "^[0-9]{1,2}$"
+                      }
+                    },
+                    {
+                      "not": {
+                        "remote": {
+                          "name": "mortyAnda",
+                          "context": [
+                            {
+                              "key": "dni",
+                              "type": "CURRENT_STEP_VALUES",
+                              "fieldName": "dni"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "GO_TO_STEP",
+                        "order": 1,
+                        "stepName": "secondB"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "order": 7,
+                "conditions": true,
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "UPDATE_COMPONENT",
+                        "order": 1,
+                        "targetName": "next",
+                        "targetProp": "loading",
+                        "context": {
+                          "key": "loading",
+                          "type": "VALUE",
+                          "value": false
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "events": {
+        "ON_MOUNTED": [
+          {
+            "order": 1,
+            "conditions": true,
+            "then": [
+              {
+                "type": "ACTIONS",
+                "order": 1,
+                "actions": [
+                  {
+                    "type": "INIT_STEP_VALUES",
+                    "order": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "secondA",
+      "title": "Paso 2A. Usuario válido",
+      "className": "grid grid-cols-1 gap-4",
+      "components": [
+        {
+          "order": 1,
+          "name": "message",
+          "componentType": "TEXT",
+          "component": {
+            "value": "✅ El DNI fue validado exitosamente con la API remota."
+          }
+        },
+        {
+          "order": 2,
+          "name": "turnDate",
+          "componentType": "FIELD",
+          "component": {
+            "type": "DATE"
+          },
+          "top": {
+            "components": [
+              {
+                "order": 1,
+                "name": "dateLabel",
+                "componentType": "LABEL",
+                "component": {
+                  "value": "Fecha de turno"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "order": 90,
+          "name": "previous",
+          "componentType": "BUTTON",
+          "component": {
+            "label": "Anterior"
+          },
+          "events": {
+            "ON_CLICK": [
+              {
+                "order": 1,
+                "conditions": true,
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "GO_TO_STEP",
+                        "order": 1,
+                        "stepName": "first"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "order": 100,
+          "name": "terminate",
+          "componentType": "BUTTON",
+          "component": {
+            "label": "Terminar"
+          },
+          "events": {
+            "ON_CLICK": [
+              {
+                "order": 1,
+                "conditions": true,
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "SAVE_STEP_VALUES",
+                        "order": 1
+                      },
+                      {
+                        "type": "FINISH_WIZARD",
+                        "order": 2
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "secondB",
+      "title": "Paso 2B. Usuario no encontrado",
+      "className": "grid grid-cols-1 gap-4",
+      "components": [
+        {
+          "order": 1,
+          "name": "message",
+          "componentType": "TEXT",
+          "component": {
+            "value": "❌ El DNI no fue encontrado en la API remota."
+          }
+        },
+        {
+          "order": 90,
+          "name": "previous",
+          "componentType": "BUTTON",
+          "component": {
+            "label": "Anterior"
+          },
+          "events": {
+            "ON_CLICK": [
+              {
+                "order": 1,
+                "conditions": true,
+                "then": [
+                  {
+                    "type": "ACTIONS",
+                    "order": 1,
+                    "actions": [
+                      {
+                        "type": "GO_TO_STEP",
+                        "order": 1,
+                        "stepName": "first"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "remoteActions": [
+    {
+      "name": "mortyAnda",
+      "method": "GET",
+      "url": "https://jsonplaceholder.typicode.com/users/{{dni}}",
+      "contentType": "JSON",
+      "expression": "$exists(id)"
+    }
+  ]
+}

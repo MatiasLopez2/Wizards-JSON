@@ -1,0 +1,49 @@
+{
+  "name": "sampleWizard",
+  "description": "Wizard de ejemplo (inputs + acción remota + confirmación)",
+  "initialStep": "userInfo",
+  "actions": [
+    {
+      "name": "getUserProfile",
+      "contentType": "JSON",
+      "method": "GET",
+      "url": "https://jsonplaceholder.typicode.com/users/{{userId}}",
+      "headers": "{\"Accept\": \"application/json\"}",
+      "expression": "name"
+    }
+  ],
+  "steps": [
+    {
+      "name": "userInfo",
+      "title": "Datos",
+      "components": [
+        {
+          "name": "userIdInput",
+          "type": "number",
+          "label": "userId (1-10)",
+          "bind": "userId"
+        },
+        {
+          "name": "loadProfileBtn",
+          "type": "button",
+          "label": "Cargar perfil (remote action)",
+          "actionName": "getUserProfile",
+          "resultAssignTo": "profileName"
+        }
+      ],
+      "nextStep": "confirm"
+    },
+    {
+      "name": "confirm",
+      "title": "Confirmación",
+      "components": [
+        {
+          "name": "profileNameDisplay",
+          "type": "display",
+          "label": "Nombre devuelto por la acción",
+          "bind": "profileName"
+        }
+      ]
+    }
+  ]
+}
