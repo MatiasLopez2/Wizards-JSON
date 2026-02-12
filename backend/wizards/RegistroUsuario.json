@@ -1,332 +1,51 @@
 {
   "name": "RegistroUsuario",
-  "description": "Wizard de registro de usuario con validación y bienvenida",
-  "initialStep": "datos_personales",
+  "description": "Wizard simple de 3 pasos para registro de usuario (estructura basada en mxm_coni)",
+  "isActive": true,
+  "initialStep": "personal",
   "steps": [
     {
-      "name": "datos_personales",
-      "title": "Paso 1: Datos Personales",
+      "name": "personal",
+      "description": "Paso 1: Datos personales",
       "className": "max-w-md mx-auto p-6 bg-white rounded-lg shadow-md",
       "components": [
         {
-          "order": 1,
+          "order": 5,
           "name": "titulo",
           "componentType": "TEXT",
-          "component": {
-            "value": "Crear una cuenta nueva"
-          },
-          "className": "text-2xl font-bold text-center mb-6 text-gray-800"
+          "component": { "value": "Crear una cuenta" },
+          "className": "text-center mb-4"
         },
         {
-          "order": 2,
+          "order": 10,
           "name": "nombre",
           "componentType": "FIELD",
-          "component": {
-            "type": "TEXT",
-            "placeholder": ""
-          },
-          "top": {
-            "components": [
-              {
-                "order": 1,
-                "name": "labelNombre",
-                "componentType": "LABEL",
-                "component": {
-                  "value": "Nombre"
-                },
-                "className": "block text-sm font-medium text-gray-700 mb-1"
-              }
-            ]
-          },
-          "className": "mb-4"
+          "component": { "type": "TEXT", "placeholder": "Nombre" },
+          "className": "mb-3"
         },
         {
-          "order": 3,
+          "order": 15,
           "name": "apellido",
           "componentType": "FIELD",
-          "component": {
-            "type": "TEXT",
-            "placeholder": ""
-          },
-          "top": {
-            "components": [
-              {
-                "order": 1,
-                "name": "labelApellido",
-                "componentType": "LABEL",
-                "component": {
-                  "value": "Apellido"
-                },
-                "className": "block text-sm font-medium text-gray-700 mb-1"
-              }
-            ]
-          },
-          "className": "mb-4"
-        },
-        {
-          "order": 4,
-          "name": "fechaNacimiento",
-          "componentType": "FIELD",
-          "component": {
-            "type": "DATE"
-          },
-          "top": {
-            "components": [
-              {
-                "order": 1,
-                "name": "labelFecha",
-                "componentType": "LABEL",
-                "component": {
-                  "value": "Fecha de Nacimiento"
-                },
-                "className": "block text-sm font-medium text-gray-700 mb-1"
-              }
-            ]
-          },
-          "className": "mb-6"
-        },
-        {
-          "order": 100,
-          "name": "btnSiguiente1",
-          "componentType": "BUTTON",
-          "component": {
-            "label": "Siguiente"
-          },
-          "className": "w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700",
-          "events": {
-            "ON_CLICK": [
-              {
-                "order": 1,
-                "conditions": true,
-                "then": [
-                  {
-                    "order": 1,
-                    "type": "ACTIONS",
-                    "actions": [
-                      {
-                        "type": "SAVE_STEP_VALUES",
-                        "order": 1
-                      },
-                      {
-                        "type": "CONSOLE_LOG",
-                        "order": 2,
-                        "context": {
-                          "key": "message",
-                          "type": "VALUE",
-                          "value": "Valores guardados paso 1"
-                        }
-                      },
-                      {
-                        "type": "GO_TO_STEP",
-                        "order": 3,
-                        "stepName": "datos_cuenta"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      ],
-      "events": {
-        "ON_MOUNTED": [
-          {
-            "order": 1,
-            "conditions": true,
-            "then": [
-              {
-                "order": 1,
-                "type": "ACTIONS",
-                "actions": [
-                  {
-                    "type": "INIT_STEP_VALUES",
-                    "order": 1
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "name": "datos_cuenta",
-      "title": "Paso 2: Datos de Cuenta",
-      "className": "max-w-md mx-auto p-6 bg-white rounded-lg shadow-md",
-      "components": [
-        {
-          "order": 1,
-          "name": "titulo2",
-          "componentType": "TEXT",
-          "component": {
-            "value": "Configura tu cuenta"
-          },
-          "className": "text-2xl font-bold text-center mb-6 text-gray-800"
-        },
-        {
-          "order": 2,
-          "name": "email",
-          "componentType": "FIELD",
-          "component": {
-            "type": "TEXT",
-            "placeholder": "usuario@ejemplo.com"
-          },
-          "top": {
-            "components": [
-              {
-                "order": 1,
-                "name": "labelEmail",
-                "componentType": "LABEL",
-                "component": {
-                  "value": "Email"
-                },
-                "className": "block text-sm font-medium text-gray-700 mb-1"
-              }
-            ]
-          },
-          "className": "mb-4"
-        },
-        {
-          "order": 3,
-          "name": "usuario",
-          "componentType": "FIELD",
-          "component": {
-            "type": "TEXT",
-            "placeholder": "nombre_usuario"
-          },
-          "top": {
-            "components": [
-              {
-                "order": 1,
-                "name": "labelUsuario",
-                "componentType": "LABEL",
-                "component": {
-                  "value": "Nombre de Usuario"
-                },
-                "className": "block text-sm font-medium text-gray-700 mb-1"
-              }
-            ]
-          },
-          "bottom": {
-            "components": [
-              {
-                "order": 1,
-                "name": "hintUsuario",
-                "componentType": "TEXT",
-                "component": {
-                  "value": "Mínimo 4 caracteres, solo letras y números"
-                },
-                "className": "text-xs text-gray-500 mt-1"
-              }
-            ]
-          },
-          "className": "mb-4"
-        },
-        {
-          "order": 4,
-          "name": "password",
-          "componentType": "FIELD",
-          "component": {
-            "type": "TEXT",
-            "placeholder": "••••••••"
-          },
-          "top": {
-            "components": [
-              {
-                "order": 1,
-                "name": "labelPassword",
-                "componentType": "LABEL",
-                "component": {
-                  "value": "Contraseña"
-                },
-                "className": "block text-sm font-medium text-gray-700 mb-1"
-              }
-            ]
-          },
-          "bottom": {
-            "components": [
-              {
-                "order": 1,
-                "name": "hintPassword",
-                "componentType": "TEXT",
-                "component": {
-                  "value": "Mínimo 6 caracteres"
-                },
-                "className": "text-xs text-gray-500 mt-1"
-              }
-            ]
-          },
-          "className": "mb-6"
+          "component": { "type": "TEXT", "placeholder": "Apellido" },
+          "className": "mb-3"
         },
         {
           "order": 90,
-          "name": "btnAnterior2",
+          "name": "next1",
           "componentType": "BUTTON",
-          "component": {
-            "label": "Anterior"
-          },
-          "className": "w-full bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400 mb-2",
+          "component": { "label": "Siguiente" },
+          "className": "w-full",
           "events": {
             "ON_CLICK": [
               {
                 "order": 1,
+                "type": "CONDITIONAL",
                 "conditions": true,
-                "then": [
-                  {
-                    "order": 1,
-                    "type": "ACTIONS",
-                    "actions": [
-                      {
-                        "type": "GO_TO_STEP",
-                        "order": 1,
-                        "stepName": "datos_personales"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "order": 100,
-          "name": "btnSiguiente2",
-          "componentType": "BUTTON",
-          "component": {
-            "label": "Siguiente"
-          },
-          "className": "w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700",
-          "events": {
-            "ON_CLICK": [
-              {
-                "order": 1,
-                "conditions": true,
-                "then": [
-                  {
-                    "order": 1,
-                    "type": "ACTIONS",
-                    "actions": [
-                      {
-                        "type": "SAVE_STEP_VALUES",
-                        "order": 1
-                      },
-                      {
-                        "type": "CONSOLE_LOG",
-                        "order": 2,
-                        "context": {
-                          "key": "message",
-                          "type": "VALUE",
-                          "value": "Valores guardados paso 2"
-                        }
-                      },
-                      {
-                        "type": "GO_TO_STEP",
-                        "order": 3,
-                        "stepName": "confirmacion"
-                      }
-                    ]
-                  }
+                "actions": [
+                  { "order": 1, "type": "SAVE_STEP_VALUES" },
+                  { "order": 2, "type": "CONSOLE_LOG", "message": "Paso 1 guardado" },
+                  { "order": 3, "type": "GO_TO_STEP", "stepName": "account" }
                 ]
               }
             ]
@@ -334,374 +53,78 @@
         }
       ],
       "events": {
-        "ON_MOUNTED": [
-          {
-            "order": 1,
-            "conditions": true,
-            "then": [
-              {
-                "order": 1,
-                "type": "ACTIONS",
-                "actions": [
-                  {
-                    "type": "INIT_STEP_VALUES",
-                    "order": 1
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "ON_MOUNTED": [ { "order": 1, "type": "CONDITIONAL", "conditions": true, "actions": [ { "order": 1, "type": "INIT_STEP_VALUES" } ] } ]
       }
     },
     {
-      "name": "confirmacion",
-      "title": "Paso 3: Confirmación",
+      "name": "account",
+      "description": "Paso 2: Datos de cuenta",
       "className": "max-w-md mx-auto p-6 bg-white rounded-lg shadow-md",
       "components": [
+        { "order": 5, "name": "titulo2", "componentType": "TEXT", "component": { "value": "Configura tu cuenta" }, "className": "text-center mb-4" },
+        { "order": 10, "name": "email", "componentType": "FIELD", "component": { "type": "TEXT", "placeholder": "email@ejemplo.com" }, "className": "mb-3" },
+        { "order": 15, "name": "usuario", "componentType": "FIELD", "component": { "type": "TEXT", "placeholder": "Usuario" }, "className": "mb-3" },
+        { "order": 20, "name": "password", "componentType": "FIELD", "component": { "type": "TEXT", "placeholder": "Contraseña" }, "className": "mb-3" },
         {
-          "order": 1,
-          "name": "titulo3",
-          "componentType": "TEXT",
-          "component": {
-            "value": "Revisa tus datos"
-          },
-          "className": "text-2xl font-bold text-center mb-6 text-gray-800"
-        },
-        {
-          "order": 2,
-          "name": "resumenTitulo",
-          "componentType": "TEXT",
-          "component": {
-            "value": "Información Personal:"
-          },
-          "className": "text-lg font-semibold mb-2 text-gray-700"
-        },
-        {
-          "order": 3,
-          "name": "resumenNombre",
-          "componentType": "TEXT",
-          "component": {
-            "value": ""
-          },
-          "className": "mb-1 text-gray-600"
-        },
-        {
-          "order": 4,
-          "name": "resumenApellido",
-          "componentType": "TEXT",
-          "component": {
-            "value": ""
-          },
-          "className": "mb-1 text-gray-600"
-        },
-        {
-          "order": 5,
-          "name": "resumenFecha",
-          "componentType": "TEXT",
-          "component": {
-            "value": ""
-          },
-          "className": "mb-4 text-gray-600"
-        },
-        {
-          "order": 6,
-          "name": "resumenCuentaTitulo",
-          "componentType": "TEXT",
-          "component": {
-            "value": "Datos de Cuenta:"
-          },
-          "className": "text-lg font-semibold mb-2 text-gray-700"
-        },
-        {
-          "order": 7,
-          "name": "resumenEmail",
-          "componentType": "TEXT",
-          "component": {
-            "value": ""
-          },
-          "className": "mb-1 text-gray-600"
-        },
-        {
-          "order": 8,
-          "name": "resumenUsuario",
-          "componentType": "TEXT",
-          "component": {
-            "value": ""
-          },
-          "className": "mb-6 text-gray-600"
-        },
-        {
-          "order": 9,
-          "name": "alertInfo",
-          "componentType": "ALERT",
-          "component": {
-            "message": "Al confirmar, se creará tu cuenta en el sistema",
-            "variant": "info"
-          },
-          "className": "mb-4"
+          "order": 80,
+          "name": "back2",
+          "componentType": "BUTTON",
+          "component": { "label": "Anterior" },
+          "className": "w-full mb-2",
+          "events": { "ON_CLICK": [ { "order": 1, "type": "CONDITIONAL", "conditions": true, "actions": [ { "order": 1, "type": "GO_TO_STEP", "stepName": "personal" } ] } ] }
         },
         {
           "order": 90,
-          "name": "btnAnterior3",
+          "name": "next2",
           "componentType": "BUTTON",
-          "component": {
-            "label": "Anterior"
-          },
-          "className": "w-full bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400 mb-2",
+          "component": { "label": "Siguiente" },
+          "className": "w-full",
           "events": {
             "ON_CLICK": [
-              {
-                "order": 1,
-                "conditions": true,
-                "then": [
-                  {
-                    "order": 1,
-                    "type": "ACTIONS",
-                    "actions": [
-                      {
-                        "type": "GO_TO_STEP",
-                        "order": 1,
-                        "stepName": "datos_cuenta"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "order": 100,
-          "name": "btnConfirmar",
-          "componentType": "BUTTON",
-          "component": {
-            "label": "Confirmar y Crear Cuenta"
-          },
-          "className": "w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700",
-          "events": {
-            "ON_CLICK": [
-              {
-                "order": 1,
-                "conditions": true,
-                "then": [
-                  {
-                    "order": 1,
-                    "type": "ACTIONS",
-                    "actions": [
-                      {
-                        "type": "UPDATE_COMPONENT",
-                        "order": 1,
-                        "targetName": "btnConfirmar",
-                        "targetProp": "loading",
-                        "context": {
-                          "key": "loading",
-                          "type": "VALUE",
-                          "value": true
-                        }
-                      },
-                      {
-                        "type": "SAVE_STEP_VALUES",
-                        "order": 2
-                      },
-                      {
-                        "type": "CONSOLE_LOG",
-                        "order": 3,
-                        "context": {
-                          "key": "message",
-                          "type": "VALUE",
-                          "value": "Usuario creado exitosamente"
-                        }
-                      },
-                      {
-                        "type": "GO_TO_STEP",
-                        "order": 4,
-                        "stepName": "bienvenida"
-                      }
-                    ]
-                  }
-                ]
-              }
+              { "order": 1, "type": "CONDITIONAL", "conditions": true, "actions": [ { "order": 1, "type": "SAVE_STEP_VALUES" }, { "order": 2, "type": "CONSOLE_LOG", "message": "Paso 2 guardado" }, { "order": 3, "type": "GO_TO_STEP", "stepName": "confirm" } ] }
             ]
           }
         }
       ],
-      "events": {
-        "ON_MOUNTED": [
-          {
-            "order": 1,
-            "conditions": true,
-            "then": [
-              {
-                "order": 1,
-                "type": "ACTIONS",
-                "actions": [
-                  {
-                    "type": "UPDATE_COMPONENT",
-                    "order": 1,
-                    "targetName": "resumenNombre",
-                    "targetProp": "value",
-                    "context": {
-                      "key": "value",
-                      "type": "ALL_STEP_VALUES",
-                      "expression": "'Nombre: ' & datos_personales.nombre"
-                    }
-                  },
-                  {
-                    "type": "UPDATE_COMPONENT",
-                    "order": 2,
-                    "targetName": "resumenApellido",
-                    "targetProp": "value",
-                    "context": {
-                      "key": "value",
-                      "type": "ALL_STEP_VALUES",
-                      "expression": "'Apellido: ' & datos_personales.apellido"
-                    }
-                  },
-                  {
-                    "type": "UPDATE_COMPONENT",
-                    "order": 3,
-                    "targetName": "resumenFecha",
-                    "targetProp": "value",
-                    "context": {
-                      "key": "value",
-                      "type": "ALL_STEP_VALUES",
-                      "expression": "'Fecha de Nacimiento: ' & datos_personales.fechaNacimiento"
-                    }
-                  },
-                  {
-                    "type": "UPDATE_COMPONENT",
-                    "order": 4,
-                    "targetName": "resumenEmail",
-                    "targetProp": "value",
-                    "context": {
-                      "key": "value",
-                      "type": "ALL_STEP_VALUES",
-                      "expression": "'Email: ' & datos_cuenta.email"
-                    }
-                  },
-                  {
-                    "type": "UPDATE_COMPONENT",
-                    "order": 5,
-                    "targetName": "resumenUsuario",
-                    "targetProp": "value",
-                    "context": {
-                      "key": "value",
-                      "type": "ALL_STEP_VALUES",
-                      "expression": "'Usuario: ' & datos_cuenta.usuario"
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+      "events": { "ON_MOUNTED": [ { "order": 1, "type": "CONDITIONAL", "conditions": true, "actions": [ { "order": 1, "type": "INIT_STEP_VALUES" } ] } ] }
     },
     {
-      "name": "bienvenida",
-      "title": "¡Bienvenido!",
+      "name": "confirm",
+      "description": "Paso 3: Confirmación",
       "className": "max-w-md mx-auto p-6 bg-white rounded-lg shadow-md",
       "components": [
-        {
-          "order": 1,
-          "name": "iconoExito",
-          "componentType": "TEXT",
-          "component": {
-            "value": "✅"
-          },
-          "className": "text-6xl text-center mb-4"
-        },
-        {
-          "order": 2,
-          "name": "tituloExito",
-          "componentType": "TEXT",
-          "component": {
-            "value": "¡Cuenta Creada Exitosamente!"
-          },
-          "className": "text-3xl font-bold text-center mb-4 text-green-600"
-        },
-        {
-          "order": 3,
-          "name": "mensajeBienvenida",
-          "componentType": "TEXT",
-          "component": {
-            "value": ""
-          },
-          "className": "text-lg text-center mb-6 text-gray-700"
-        },
-        {
-          "order": 4,
-          "name": "alertSuccess",
-          "componentType": "ALERT",
-          "component": {
-            "message": "Tu cuenta ha sido creada correctamente. Ya puedes iniciar sesión con tus credenciales.",
-            "variant": "success"
-          },
-          "className": "mb-6"
-        },
-        {
-          "order": 5,
-          "name": "infoAdicional",
-          "componentType": "TEXT",
-          "component": {
-            "value": "Hemos enviado un email de confirmación a tu dirección de correo."
-          },
-          "className": "text-sm text-center text-gray-600 mb-6"
-        },
-        {
-          "order": 100,
-          "name": "btnFinalizar",
-          "componentType": "BUTTON",
-          "component": {
-            "label": "Ir al Login"
-          },
-          "className": "w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700",
-          "events": {
-            "ON_CLICK": [
-              {
-                "order": 1,
-                "conditions": true,
-                "then": [
-                  {
-                    "order": 1,
-                    "type": "ACTIONS",
-                    "actions": [
-                      {
-                        "type": "FINISH_WIZARD",
-                        "order": 1
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        }
+        { "order": 5, "name": "titulo3", "componentType": "TEXT", "component": { "value": "Confirma tus datos" }, "className": "text-center mb-4" },
+        { "order": 10, "name": "resumenNombre", "componentType": "TEXT", "component": { "value": "" }, "className": "mb-1 text-gray-600" },
+        { "order": 15, "name": "resumenUsuario", "componentType": "TEXT", "component": { "value": "" }, "className": "mb-1 text-gray-600" },
+        { "order": 80, "name": "back3", "componentType": "BUTTON", "component": { "label": "Anterior" }, "className": "w-full mb-2", "events": { "ON_CLICK": [ { "order": 1, "type": "CONDITIONAL", "conditions": true, "actions": [ { "order": 1, "type": "GO_TO_STEP", "stepName": "account" } ] } ] } },
+        { "order": 90, "name": "confirmBtn", "componentType": "BUTTON", "component": { "label": "Confirmar" }, "className": "w-full bg-green-600 text-white", "events": { "ON_CLICK": [ { "order": 1, "type": "CONDITIONAL", "conditions": true, "actions": [ { "order": 1, "type": "SAVE_STEP_VALUES" }, { "order": 2, "type": "CONSOLE_LOG", "message": "Usuario confirmado" }, { "order": 3, "type": "FINISH_WIZARD" } ] } ] } }
       ],
       "events": {
         "ON_MOUNTED": [
           {
             "order": 1,
+            "type": "CONDITIONAL",
             "conditions": true,
-            "then": [
+            "actions": [
               {
                 "order": 1,
-                "type": "ACTIONS",
-                "actions": [
-                  {
-                    "type": "UPDATE_COMPONENT",
-                    "order": 1,
-                    "targetName": "mensajeBienvenida",
-                    "targetProp": "value",
-                    "context": {
-                      "key": "value",
-                      "type": "ALL_STEP_VALUES",
-                      "expression": "'¡Bienvenido, ' & datos_personales.nombre & ' ' & datos_personales.apellido & '!'"
-                    }
-                  }
-                ]
-              }
+                "type": "UPDATE_COMPONENT",
+                "params": {
+                  "targetName": "resumenNombre",
+                  "targetProp": "value",
+                  "context": { "key": "value", "type": "ALL_STEP_VALUES", "expression": "'Nombre: ' & personal.nombre & ' ' & personal.apellido" }
+                }
+              },
+              {
+                "order": 2,
+                "type": "UPDATE_COMPONENT",
+                "params": {
+                  "targetName": "resumenUsuario",
+                  "targetProp": "value",
+                  "context": { "key": "value", "type": "ALL_STEP_VALUES", "expression": "'Usuario: ' & account.usuario" }
+                }
+              },
+              { "order": 3, "type": "INIT_STEP_VALUES" }
             ]
           }
         ]

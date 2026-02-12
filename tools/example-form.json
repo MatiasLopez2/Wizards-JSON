@@ -1,0 +1,28 @@
+{
+  "name": "RegistroUsuario_FormSchema",
+  "description": "Ejemplo de formSchema para registro de usuario",
+  "steps": [
+    {
+      "name": "personal",
+      "title": "Datos personales",
+      "fields": [
+        { "id": "nombre", "label": "Nombre", "type": "text", "placeholder": "Juan" },
+        { "id": "apellido", "label": "Apellido", "type": "text", "placeholder": "Pérez" }
+      ]
+    },
+    {
+      "name": "account",
+      "title": "Datos de cuenta",
+      "fields": [
+        { "id": "email", "label": "Email", "type": "email", "placeholder": "usuario@ejemplo.com" },
+        { "id": "usuario", "label": "Usuario", "type": "text", "placeholder": "usuario123" },
+        { "id": "password", "label": "Contraseña", "type": "password", "placeholder": "********" }
+      ]
+    },
+    {
+      "name": "confirm",
+      "title": "Confirmación",
+      "fields": []
+    }
+  ]
+}

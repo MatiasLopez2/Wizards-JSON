@@ -100,15 +100,7 @@ function WizardViewer() {
                 </button>
                 {' - Wizard de registro de usuario con validación y bienvenida'}
               </li>
-              <li>
-                <button
-                  onClick={() => setActiveWizard('mxm_sas')}
-                  className="text-blue-600 hover:underline"
-                >
-                  Mxm_sas
-                </button>
-                {' - Wizard de ejemplo para MXM SAS con múltiples pasos y validaciones'}
-              </li>
+             
             </ul>
           </div>
         </div>

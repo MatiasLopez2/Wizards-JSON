@@ -1,0 +1,347 @@
+{
+  "name": "RegistroUsuario_FormSchema",
+  "description": "Ejemplo de formSchema para registro de usuario",
+  "isActive": true,
+  "initialStep": "personal",
+  "steps": [
+    {
+      "name": "personal",
+      "description": "Datos personales",
+      "className": "max-w-md mx-auto p-6 bg-white rounded-lg shadow-md",
+      "components": [
+        {
+          "order": 5,
+          "name": "title",
+          "componentType": "TEXT",
+          "component": {
+            "value": "Datos personales"
+          },
+          "className": "text-center mb-4"
+        },
+        {
+          "order": 10,
+          "name": "nombre",
+          "componentType": "FIELD",
+          "component": {
+            "type": "TEXT",
+            "placeholder": "Juan"
+          }
+        },
+        {
+          "order": 15,
+          "name": "apellido",
+          "componentType": "FIELD",
+          "component": {
+            "type": "TEXT",
+            "placeholder": "Pérez"
+          }
+        },
+        {
+          "order": 90,
+          "name": "next",
+          "componentType": "BUTTON",
+          "component": {
+            "label": "Siguiente"
+          },
+          "className": "w-full",
+          "events": {
+            "ON_CLICK": [
+              {
+                "order": 1,
+                "type": "CONDITIONAL",
+                "conditions": true,
+                "actions": [
+                  {
+                    "order": 1,
+                    "type": "SAVE_STEP_VALUES"
+                  },
+                  {
+                    "order": 2,
+                    "type": "GO_TO_STEP",
+                    "stepName": "account"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "events": {
+        "ON_MOUNTED": [
+          {
+            "order": 1,
+            "type": "CONDITIONAL",
+            "conditions": true,
+            "actions": [
+              {
+                "order": 1,
+                "type": "INIT_STEP_VALUES"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "account",
+      "description": "Datos de cuenta",
+      "className": "max-w-md mx-auto p-6 bg-white rounded-lg shadow-md",
+      "components": [
+        {
+          "order": 5,
+          "name": "title",
+          "componentType": "TEXT",
+          "component": {
+            "value": "Datos de cuenta"
+          },
+          "className": "text-center mb-4"
+        },
+        {
+          "order": 10,
+          "name": "email",
+          "componentType": "FIELD",
+          "component": {
+            "type": "EMAIL",
+            "placeholder": "usuario@ejemplo.com"
+          }
+        },
+        {
+          "order": 15,
+          "name": "usuario",
+          "componentType": "FIELD",
+          "component": {
+            "type": "TEXT",
+            "placeholder": "usuario123"
+          }
+        },
+        {
+          "order": 20,
+          "name": "password",
+          "componentType": "FIELD",
+          "component": {
+            "type": "TEXT",
+            "placeholder": "********"
+          }
+        },
+        {
+          "order": 80,
+          "name": "back",
+          "componentType": "BUTTON",
+          "component": {
+            "label": "Anterior"
+          },
+          "className": "w-full mb-2",
+          "events": {
+            "ON_CLICK": [
+              {
+                "order": 1,
+                "type": "CONDITIONAL",
+                "conditions": true,
+                "actions": [
+                  {
+                    "order": 1,
+                    "type": "GO_TO_STEP",
+                    "stepName": "personal"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "order": 90,
+          "name": "next",
+          "componentType": "BUTTON",
+          "component": {
+            "label": "Siguiente"
+          },
+          "className": "w-full",
+          "events": {
+            "ON_CLICK": [
+              {
+                "order": 1,
+                "type": "CONDITIONAL",
+                "conditions": true,
+                "actions": [
+                  {
+                    "order": 1,
+                    "type": "SAVE_STEP_VALUES"
+                  },
+                  {
+                    "order": 2,
+                    "type": "GO_TO_STEP",
+                    "stepName": "confirm"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "events": {
+        "ON_MOUNTED": [
+          {
+            "order": 1,
+            "type": "CONDITIONAL",
+            "conditions": true,
+            "actions": [
+              {
+                "order": 1,
+                "type": "INIT_STEP_VALUES"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "confirm",
+      "description": "Confirmación",
+      "className": "max-w-md mx-auto p-6 bg-white rounded-lg shadow-md",
+      "components": [
+        {
+          "order": 5,
+          "name": "title",
+          "componentType": "TEXT",
+          "component": {
+            "value": "Confirmación"
+          },
+          "className": "text-center mb-4"
+        },
+        {
+          "order": 80,
+          "name": "back",
+          "componentType": "BUTTON",
+          "component": {
+            "label": "Anterior"
+          },
+          "className": "w-full mb-2",
+          "events": {
+            "ON_CLICK": [
+              {
+                "order": 1,
+                "type": "CONDITIONAL",
+                "conditions": true,
+                "actions": [
+                  {
+                    "order": 1,
+                    "type": "GO_TO_STEP",
+                    "stepName": "account"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "order": 90,
+          "name": "confirm",
+          "componentType": "BUTTON",
+          "component": {
+            "label": "Confirmar"
+          },
+          "className": "w-full bg-green-600 text-white",
+          "events": {
+            "ON_CLICK": [
+              {
+                "order": 1,
+                "type": "CONDITIONAL",
+                "conditions": true,
+                "actions": [
+                  {
+                    "order": 1,
+                    "type": "SAVE_STEP_VALUES"
+                  },
+                  {
+                    "order": 2,
+                    "type": "FINISH_WIZARD"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "events": {
+        "ON_MOUNTED": [
+          {
+            "order": 1,
+            "type": "CONDITIONAL",
+            "conditions": true,
+            "actions": [
+              {
+                "order": 1,
+                "type": "INIT_STEP_VALUES"
+              },
+              {
+                "order": 1,
+                "type": "UPDATE_COMPONENT",
+                "params": {
+                  "targetName": "resumen_personal_nombre",
+                  "targetProp": "value",
+                  "context": {
+                    "key": "value",
+                    "type": "ALL_STEP_VALUES",
+                    "expression": "'nombre: ' & personal.nombre"
+                  }
+                }
+              },
+              {
+                "order": 2,
+                "type": "UPDATE_COMPONENT",
+                "params": {
+                  "targetName": "resumen_personal_apellido",
+                  "targetProp": "value",
+                  "context": {
+                    "key": "value",
+                    "type": "ALL_STEP_VALUES",
+                    "expression": "'apellido: ' & personal.apellido"
+                  }
+                }
+              },
+              {
+                "order": 3,
+                "type": "UPDATE_COMPONENT",
+                "params": {
+                  "targetName": "resumen_account_email",
+                  "targetProp": "value",
+                  "context": {
+                    "key": "value",
+                    "type": "ALL_STEP_VALUES",
+                    "expression": "'email: ' & account.email"
+                  }
+                }
+              },
+              {
+                "order": 4,
+                "type": "UPDATE_COMPONENT",
+                "params": {
+                  "targetName": "resumen_account_usuario",
+                  "targetProp": "value",
+                  "context": {
+                    "key": "value",
+                    "type": "ALL_STEP_VALUES",
+                    "expression": "'usuario: ' & account.usuario"
+                  }
+                }
+              },
+              {
+                "order": 5,
+                "type": "UPDATE_COMPONENT",
+                "params": {
+                  "targetName": "resumen_account_password",
+                  "targetProp": "value",
+                  "context": {
+                    "key": "value",
+                    "type": "ALL_STEP_VALUES",
+                    "expression": "'password: ' & account.password"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
